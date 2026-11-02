@@ -6,19 +6,23 @@ def mergeAlternately(word1: str, word2: str) -> str:
     # 1. Check word length
     if len1 < 1 or len2 < 1:
         print("Break: word1.length or word2.length < 1")
+        raise ValueError("word1.length or word2.length < 1, Length must be between 1 and 100.")
         return ""
     elif len1 > 100 or len2 > 100:
         print("Break: word1.length or word2.length > 100")
+        raise ValueError("word1.length or word2.length > 100, word1.length or word2.length < 1, Length must be between 1 and 100.")
         return ""
 
     # 2. Check lowercase
     if not word1.islower() or not word2.islower():
         print("Break: word1 and word2 must consist of lowercase English letters.")
+        raise ValueError("Strings must contain only lowercase English letters.")
         return ""
 
     # 3. Ensures characters are purely alphabetic (A-Z, a-z)
     if not word1.isalpha()  or not word2.isalpha():
         print("Break: Strings must contain only English letters (no numbers or special characters like !, ?, %).")
+        raise ValueError("Strings must contain only lowercase English letters.")
         return ""
 
     # Alternate characters while both strings have remaining characters
