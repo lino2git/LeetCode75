@@ -42,14 +42,25 @@ def mergeAlternately(word1: str, word2: str) -> str:
         
     return "".join(merged)
 
-# Run manually
-if __name__ == "__main__":
-    print(mergeAlternately("abc", "pqr"))  # Expected: "apbqcr"
-    print(mergeAlternately("ab", "pqrs"))  # Expected: "apbqrs"
-    print(mergeAlternately("abcd", "pq"))  # Expected: "apbqcd"
+# --- MANUAL TESTING BLOCK ---
+def manual_test_wrapper(word1: str, word2: str) -> str:
+    """Helper wrapper to print messages and return "" instead of crashing on error."""
+    try:
+        return mergeAlternately(word1, word2)
+    except ValueError as e:
+        print(f"Break: {e}")
+        return ""
 
-    print(mergeAlternately("", "pqr"))  # Expected: "Break"
-    print(mergeAlternately("abc", ""))  # Expected: "Break"
-    print(mergeAlternately("ABC", "pqr"))  # Expected: "Break"
-    print(mergeAlternately("ab!", "pqr"))  # Expected: "Break"
-    print(mergeAlternately("abc!", "pq2"))  # Expected: "Break"
+
+if __name__ == "__main__":
+    print("--- Valid Tests ---")
+    print(manual_test_wrapper("abc", "pqr"))   # Output: "apbqcr"
+    print(manual_test_wrapper("ab", "pqrs"))   # Output: "apbqrs"
+    print(manual_test_wrapper("abcd", "pq"))   # Output: "apbqcd"
+
+    print("\n--- Invalid Tests (Manual handling: Returns \"\") ---")
+    print(manual_test_wrapper("", "pqr"))      # Break: Length must be between 1 and 100. -> ""
+    print(manual_test_wrapper("abc", ""))      # Break: Length must be between 1 and 100. -> ""
+    print(manual_test_wrapper("ABC", "pqr"))   # Break: Strings must contain only lowercase English letters. -> ""
+    print(manual_test_wrapper("ab!", "pqr"))   # Break: Strings must contain only lowercase English letters. -> ""
+    print(manual_test_wrapper("abc!", "pq2"))  # Break: Strings must contain only lowercase English letters. -> ""
